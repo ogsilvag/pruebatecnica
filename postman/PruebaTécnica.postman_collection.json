@@ -1,0 +1,184 @@
+{
+	"info": {
+		"_postman_id": "99f0bc98-d055-428e-9d2c-c83068aea6bc",
+		"name": "PruebaTécnica",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "20802778"
+	},
+	"item": [
+		{
+			"name": "CreaClientes",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.globals.set(\"JoseLema\", pm.response.json()[0][\"id\"]);\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "[\r\n    {\r\n        \"name\": \"José\",\r\n        \"last_name\": \"Lema\",\r\n        \"address\": \"Óvalo s/n y Principal\",\r\n        \"phone_number\": \"0982254785\",\r\n        \"password\": \"1234\"\r\n    },\r\n    {\r\n        \"name\": \"Marianela\",\r\n        \"last_name\": \"Montalvo\",\r\n        \"address\": \"Amazonas y NNUU\",\r\n        \"phone_number\": \"097548965\",\r\n        \"password\": \"5678\"\r\n    },\r\n    {\r\n        \"name\": \"Juan\",\r\n        \"last_name\": \"Osorio\",\r\n        \"address\": \"13 junio y Equinoccial\",\r\n        \"phone_number\": \"098874587\",\r\n        \"password\": \"1245\"\r\n    }\r\n]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{server}}:{{port}}/clientes/save",
+					"host": [
+						"{{server}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"clientes",
+						"save"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CreaCuentas",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.globals.set(\"478758\", pm.response.json()[0][\"id\"]);\r",
+							"pm.globals.set(\"225487\", pm.response.json()[1][\"id\"]);\r",
+							"pm.globals.set(\"495878\", pm.response.json()[2][\"id\"]);\r",
+							"pm.globals.set(\"496825\", pm.response.json()[3][\"id\"]);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "[\r\n    {\r\n        \"account_number\": \"478758\",\r\n        \"account_type\": \"AHORROS\",\r\n        \"initial_balance\": 2000.0,\r\n        \"client_id\":\"{{JoseLema}}\"\r\n    },\r\n    {\r\n        \"account_number\": \"225487\",\r\n        \"account_type\": \"CORRIENTE\",\r\n        \"initial_balance\": 100.0,\r\n        \"client_id\":\"{{MarianelaMontalvo}}\"\r\n    },\r\n    {\r\n        \"account_number\": \"495878\",\r\n        \"account_type\": \"AHORROS\",\r\n        \"initial_balance\": 0.0,\r\n        \"client_id\": \"{{JuanOsorio}}\"\r\n    },\r\n    {\r\n        \"account_number\": \"496825\",\r\n        \"account_type\": \"AHORROS\",\r\n        \"initial_balance\": 540.0,\r\n        \"client_id\": \"{{MarianelaMontalvo}}\"\r\n    }\r\n]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{server}}:{{port}}/cuentas/save",
+					"host": [
+						"{{server}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"cuentas",
+						"save"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CuentaAdicional",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.globals.set(\"585545\", pm.response.json()[\"id\"]);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"account_number\": \"585545\",\r\n    \"account_type\": \"CORRIENTE\",\r\n    \"initial_balance\": 1000.0,\r\n    \"client_id\": \"{{JoseLema}}\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{server}}:{{port}}/cuentas/",
+					"host": [
+						"{{server}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"cuentas",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CreaMovimentos",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "[\r\n    {\r\n        \"account_number\": \"478758\",\r\n        \"operation_type\": \"RETIRO\",\r\n        \"amount\": 575\r\n    },\r\n    {\r\n        \"account_number\": \"225487\",\r\n        \"operation_type\": \"DEPOSITO\",\r\n        \"amount\": 600\r\n    },\r\n    {\r\n        \"account_number\": \"495878\",\r\n        \"operation_type\": \"DEPOSITO\",\r\n        \"amount\": 150\r\n    },\r\n    {\r\n        \"account_number\": \"496825\",\r\n        \"operation_type\": \"RETIRO\",\r\n        \"amount\": 540\r\n    }\r\n]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{server}}:{{port}}/movimientos/",
+					"host": [
+						"{{server}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"movimientos",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Reporte",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{server}}:{{port}}/movimientos/report?clientId={{MarianelaMontalvo}}",
+					"host": [
+						"{{server}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"movimientos",
+						"report"
+					],
+					"query": [
+						{
+							"key": "clientId",
+							"value": "{{MarianelaMontalvo}}"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
